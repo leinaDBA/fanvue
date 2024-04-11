@@ -1,6 +1,6 @@
 import type {InferGetServerSidePropsType, NextPage} from "next";
-import {Paper, Button, Typography, Grid} from "@mui/material";
-import Image from "next/image";
+import {Grid} from "@mui/material";
+import Head from "next/head";
 import Thumbnail from "../components/Thumbnail";
 
 type Albums = {
@@ -37,19 +37,24 @@ export const getServerSideProps = async () => {
 const Vault: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({thumbnails}) => {
 
     return (
-        <main>
-            <Grid
-                container
-                spacing={0}
-                alignItems="center"
-                justifyContent="center"
-                sx={{minHeight: '100vh', minWidth: '100%'}}
-            >
-                {thumbnails.map((thumbnail, index) => (
-                    <Thumbnail key={`${thumbnail.thumbnailUrl} ${index}`} {...thumbnail} />
-                ))}
-            </Grid>
-        </main>
+        <>
+            <Head>
+                <title>Vault - thumbnails</title>
+            </Head>
+            <main>
+                <Grid
+                    container
+                    spacing={0}
+                    alignItems="center"
+                    justifyContent="center"
+                    sx={{minHeight: '100vh', minWidth: '100%'}}
+                >
+                    {thumbnails.map((thumbnail, index) => (
+                        <Thumbnail key={`${thumbnail.thumbnailUrl} ${index}`} {...thumbnail} />
+                    ))}
+                </Grid>
+            </main>
+        </>
     );
 };
 

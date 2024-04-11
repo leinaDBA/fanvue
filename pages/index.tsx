@@ -7,12 +7,12 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title></title>
+        <title>Task home page</title>
       </Head>
       <main>
         <Box textAlign={"center"} my={8}>
           <Typography component="h1" variant="h3">
-            Fanvue&apos;s Frontend coding challenge 💻
+            Fanvue's Frontend coding challenge 💻
           </Typography>
         </Box>
         <Grid container spacing={1}>

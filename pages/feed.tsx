@@ -1,5 +1,6 @@
 import type {InferGetServerSidePropsType, NextPage} from "next";
-import {Paper, Button, Typography, Grid} from "@mui/material";
+import {Grid} from "@mui/material";
+import Head from "next/head";
 import {Comments, Post} from "../types";
 import Card from "../components/Post";
 
@@ -22,20 +23,27 @@ export const getServerSideProps = async () => {
 }
 
 const Feed: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = ({postsWithComments}) => {
-    return <main>
-        <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            sx={{minHeight: '100vh'}}
-        >
-            {postsWithComments.map(post => (
-                <Card key={post.id} {...post} />
-            ))}
-        </Grid>
-    </main>;
+    return (
+        <>
+            <Head>
+                <title>Feed - posts</title>
+            </Head>
+            <main>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    sx={{minHeight: '100vh'}}
+                >
+                    {postsWithComments.map(post => (
+                        <Card key={post.id} {...post} />
+                    ))}
+                </Grid>
+            </main>
+        </>
+    );
 };
 
 export default Feed;
